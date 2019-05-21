@@ -10,7 +10,7 @@ type
     private
         _udpClient: TUdpClient;
     public
-        constructor Create;
+        constructor Create(udpClient: TUdpClient);
         destructor Destroy; override;
         procedure Send(msgBody: String);
     end;
@@ -19,9 +19,9 @@ implementation
 
 { TSender }
 
-constructor TSender.Create;
+constructor TSender.Create(udpClient: TUdpClient);
 begin
-    _udpClient := TUdpClient.Create;
+    _udpClient := udpClient;
 end;
 
 destructor TSender.Destroy;
