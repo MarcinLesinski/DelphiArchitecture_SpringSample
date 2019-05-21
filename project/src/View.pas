@@ -38,6 +38,8 @@ end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
 begin
+    _udpClient.DisposeOf;
+    _sender.DisposeOf;
     _logic.DisposeOf;
 end;
 

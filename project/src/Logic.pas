@@ -12,7 +12,6 @@ type
         _canSend: Boolean;
     public
         constructor Create(sender: TSender);
-        destructor Destroy; override;
         procedure Lock;
         procedure Unlock;
         procedure Execute;
@@ -26,12 +25,6 @@ constructor TLogic.Create(sender: TSender);
 begin
     _sender := sender;
     _canSend := false;
-end;
-
-destructor TLogic.Destroy;
-begin
-    _sender.DisposeOf;
-    inherited;
 end;
 
 procedure TLogic.Lock;

@@ -11,7 +11,6 @@ type
         _udpClient: TUdpClient;
     public
         constructor Create(udpClient: TUdpClient);
-        destructor Destroy; override;
         procedure Send(msgBody: String);
     end;
 
@@ -22,12 +21,6 @@ implementation
 constructor TSender.Create(udpClient: TUdpClient);
 begin
     _udpClient := udpClient;
-end;
-
-destructor TSender.Destroy;
-begin
-    _udpClient.DisposeOf;
-    inherited;
 end;
 
 procedure TSender.Send(msgBody: String);
