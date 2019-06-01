@@ -3,12 +3,8 @@ unit UdpClient;
 interface
 
 type
-    TUdpClient = class
-    private
-        _port: Word;
-        _host: String;
-        _header: String;
-
+    IUdpClient = interface
+        ['{740335C1-220A-4F57-8617-DE010642DD85}']
         {$REGION 'g/setter'}
         function get_port: Word;
         procedure set_port(const Value: Word);
@@ -17,9 +13,6 @@ type
         function get_header: String;
         procedure set_header(const Value: String);
         {$ENDREGION}
-    public
-        constructor Create();
-
         procedure Send(msgBody: String);
         property port: Word read get_port write set_port;
         property host: String read get_host write set_host;
@@ -27,59 +20,5 @@ type
     end;
 
 implementation
-
-uses
-    FMX.Dialogs,
-    System.SysUtils;
-
-{ TSender }
-
-constructor TUdpClient.Create;
-begin
-    _port := 12345;
-    _host := '127.0.0.1';
-    _header := 'header';
-end;
-
-procedure TUdpClient.Send(msgBody: String);
-var
-    msg: String;
-begin
-    msg := Format('%s:%d %s - %s', [_host, _port, _header, msgBody]);
-    ShowMessage(msg);
-end;
-
-{$REGION 'properties'}
-
-function TUdpClient.get_header: String;
-begin
-    result := _header;
-end;
-
-function TUdpClient.get_host: String;
-begin
-    result := _host;
-end;
-
-function TUdpClient.get_port: Word;
-begin
-    result := port;
-end;
-
-procedure TUdpClient.set_header(const Value: String);
-begin
-    _header := Value;
-end;
-
-procedure TUdpClient.set_host(const Value: String);
-begin
-    _host := Value;
-end;
-
-procedure TUdpClient.set_port(const Value: Word);
-begin
-    _port := Value;
-end;
-{$ENDREGION}
 
 end.

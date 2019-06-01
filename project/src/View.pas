@@ -14,10 +14,10 @@ type
         ExecuteLogicButton: TButton;
         procedure ExecuteLogicButtonClick(Sender: TObject);
     private
-        _logic: TLogic;
-        _udpClient: TUdpClient;
+        _logic: ILogic;
+        _udpClient: IUdpClient;
     public
-        constructor Create(logic: TLogic; udpClient: TUdpClient); reintroduce;
+        constructor Create(logic: ILogic; udpClient: IUdpClient); reintroduce;
     end;
 
 var
@@ -27,7 +27,7 @@ implementation
 
 {$R *.fmx}
 
-constructor TForm1.Create(logic: TLogic; udpClient: TUdpClient);
+constructor TForm1.Create(logic: ILogic; udpClient: IUdpClient);
 begin
     inherited Create(Application);
 

@@ -2,33 +2,12 @@ unit Sender;
 
 interface
 
-uses
-    UdpClient;
-
 type
-    TSender = class
-    private
-        _udpClient: TUdpClient;
-    public
-        constructor Create(udpClient: TUdpClient);
+    ISender = interface
+        ['{D40DBC62-9D42-49EF-AC90-6DC5856DFC03}']
         procedure Send(msgBody: String);
     end;
 
 implementation
-
-{ TSender }
-
-constructor TSender.Create(udpClient: TUdpClient);
-begin
-    _udpClient := udpClient;
-end;
-
-procedure TSender.Send(msgBody: String);
-var
-    decoratedMsgBody: String;
-begin
-    decoratedMsgBody :=  '***' + msgBody + '***';
-    _udpClient.Send(decoratedMsgBody);
-end;
 
 end.

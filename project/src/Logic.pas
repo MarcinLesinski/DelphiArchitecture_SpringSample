@@ -2,45 +2,14 @@ unit Logic;
 
 interface
 
-uses
-    Sender;
-
 type
-    TLogic = class
-    private
-        _sender: TSender;
-        _canSend: Boolean;
-    public
-        constructor Create(sender: TSender);
+    ILogic = interface
+        ['{23035962-C004-4108-87D3-C57C80B5BCB4}']
         procedure Lock;
         procedure Unlock;
         procedure Execute;
     end;
 
 implementation
-
-{ TLogic }
-
-constructor TLogic.Create(sender: TSender);
-begin
-    _sender := sender;
-    _canSend := false;
-end;
-
-procedure TLogic.Lock;
-begin
-    _canSend := false;
-end;
-
-procedure TLogic.Unlock;
-begin
-    _canSend := true;
-end;
-
-procedure TLogic.Execute;
-begin
-    if _canSend then
-        _sender.Send('busines bla bla bla');
-end;
 
 end.
