@@ -1,6 +1,7 @@
 program Project;
 
 uses
+  Spring.Container,
   System.StartUpCopy,
   FMX.Forms,
   View in 'src\View.pas' {Form1},
@@ -10,30 +11,19 @@ uses
 
 {$R *.res}
 
-var
-    _logic: TLogic;
-    _sender: TSender;
-    _udpClient: TUdpClient;
-
 begin
   ReportMemoryLeaksOnShutdown := true;
-
   Application.Initialize;
-  Application.RealCreateForms;
-  Application.CreateForm(TForm1, Form1);
-  Application.MainForm := Form1;
+//  Application.RealCreateForms;
 
-  _udpClient := TUdpClient.Create;
-  _sender := TSender.Create(_udpClient);
-  _logic := TLogic.Create(_sender);
+  GlobalContainer.RegisterType<TUdpClient>.AsSingleton;
+  GlobalContainer.RegisterType<TSender>.AsSingleton;
+  GlobalContainer.RegisterType<TLogic>.AsSingleton;
+  GlobalContainer.RegisterType<TForm1, TForm1>.AsSingleton;
 
-  Form1.Inject(_logic);
-  Form1.Inject(_udpClient);
+  GlobalContainer.Build;
+  Form1 := GlobalContainer.Resolve<TForm1>;
+
   Form1.Show;
-
   Application.Run;
-
-  _udpClient.DisposeOf;
-  _sender.DisposeOf;
-  _logic.DisposeOf;
 end.

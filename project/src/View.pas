@@ -17,8 +17,7 @@ type
         _logic: TLogic;
         _udpClient: TUdpClient;
     public
-        procedure Inject(logic: TLogic); overload;
-        procedure Inject(udpClient: TUdpClient); overload;       
+        constructor Create(logic: TLogic; udpClient: TUdpClient); reintroduce;
     end;
 
 var
@@ -28,13 +27,12 @@ implementation
 
 {$R *.fmx}
 
-procedure TForm1.Inject(logic: TLogic);
+constructor TForm1.Create(logic: TLogic; udpClient: TUdpClient);
 begin
-    _logic := logic;
-end;
+    inherited Create(Application);
 
-procedure TForm1.Inject(udpClient: TUdpClient);
-begin
+    Application.MainForm := Self;
+    _logic := logic;
     _udpClient := udpClient;
 end;
 
