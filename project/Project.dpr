@@ -10,7 +10,8 @@ uses
   Logic in 'src\Logic.pas',
   Logic_Imp in 'src\Logic_Imp.pas',
   Sender_Imp in 'src\Sender_Imp.pas',
-  UdpClient_Imp in 'src\UdpClient_Imp.pas';
+  UdpClient_Imp in 'src\UdpClient_Imp.pas',
+  UdpClientConfigurable in 'src\UdpClientConfigurable.pas';
 
 {$R *.res}
 

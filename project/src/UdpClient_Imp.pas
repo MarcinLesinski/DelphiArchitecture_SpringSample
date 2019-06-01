@@ -3,10 +3,11 @@ unit UdpClient_Imp;
 interface
 
 uses
-    UdpClient;
+    UdpClient,
+    UdpClientConfigurable;
 
 type
-    TUdpClient = class(TInterfacedObject, IUdpClient)
+    TUdpClient = class(TInterfacedObject, IUdpClient, IUdpClientConfigurable)
     private
         _port: Word;
         _host: String;

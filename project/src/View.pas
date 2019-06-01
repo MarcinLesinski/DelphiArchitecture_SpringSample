@@ -4,7 +4,7 @@ interface
 
 uses
     Logic,
-    UdpClient,
+    UdpClientConfigurable,
 
     System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
     FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Controls.Presentation, FMX.StdCtrls;
@@ -15,9 +15,9 @@ type
         procedure ExecuteLogicButtonClick(Sender: TObject);
     private
         _logic: ILogic;
-        _udpClient: IUdpClient;
+        _udpClient: IUdpClientConfigurable;
     public
-        constructor Create(logic: ILogic; udpClient: IUdpClient); reintroduce;
+        constructor Create(logic: ILogic; udpClient: IUdpClientConfigurable); reintroduce;
     end;
 
 var
@@ -27,7 +27,7 @@ implementation
 
 {$R *.fmx}
 
-constructor TForm1.Create(logic: ILogic; udpClient: IUdpClient);
+constructor TForm1.Create(logic: ILogic; udpClient: IUdpClientConfigurable);
 begin
     inherited Create(Application);
 
