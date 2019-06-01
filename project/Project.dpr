@@ -11,7 +11,8 @@ uses
   Logic_Imp in 'src\Logic_Imp.pas',
   Sender_Imp in 'src\Sender_Imp.pas',
   UdpClient_Imp in 'src\UdpClient_Imp.pas',
-  UdpClientConfigurable in 'src\UdpClientConfigurable.pas';
+  UdpClientConfigurable in 'src\UdpClientConfigurable.pas',
+  TotallyNewLogic_Imp in 'src\TotallyNewLogic_Imp.pas';
 
 {$R *.res}
 
@@ -22,7 +23,8 @@ begin
 
   GlobalContainer.RegisterType<TUdpClient>.AsSingleton;
   GlobalContainer.RegisterType<TSender>.AsSingleton;
-  GlobalContainer.RegisterType<TLogic>.AsSingleton;
+  GlobalContainer.RegisterType<TTotallyNewLogic>.AsSingleton;
+//  GlobalContainer.RegisterType<TLogic>.AsSingleton;
   GlobalContainer.RegisterType<TForm1, TForm1>.AsSingleton;
 
   GlobalContainer.Build;
