@@ -4,7 +4,6 @@ interface
 
 uses
     Logic,
-    Sender,
     UdpClient,
 
     System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
@@ -14,12 +13,12 @@ type
     TForm1 = class(TForm)
         ExecuteLogicButton: TButton;
         procedure ExecuteLogicButtonClick(Sender: TObject);
-        procedure FormCreate(Sender: TObject);
-        procedure FormDestroy(Sender: TObject);
     private
         _logic: TLogic;
-        _sender: TSender;
         _udpClient: TUdpClient;
+    public
+        procedure Inject(logic: TLogic); overload;
+        procedure Inject(udpClient: TUdpClient); overload;       
     end;
 
 var
@@ -29,18 +28,14 @@ implementation
 
 {$R *.fmx}
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TForm1.Inject(logic: TLogic);
 begin
-    _udpClient := TUdpClient.Create;
-    _sender := TSender.Create(_udpClient);
-    _logic := TLogic.Create(_sender);
+    _logic := logic;
 end;
 
-procedure TForm1.FormDestroy(Sender: TObject);
+procedure TForm1.Inject(udpClient: TUdpClient);
 begin
-    _udpClient.DisposeOf;
-    _sender.DisposeOf;
-    _logic.DisposeOf;
+    _udpClient := udpClient;
 end;
 
 procedure TForm1.ExecuteLogicButtonClick(Sender: TObject);
